@@ -293,7 +293,7 @@ function [U, U_diff_b] = generate_Trotter_ansatz_TFIM(spin_num, layer, bvalue)
                 for j =1:spin_num
                     U_diff_b((2*spin_num-1)*(i-1)+j,:,:) = -0.5*1j*reshape(URs(i,:,:),2^spin_num,2^spin_num)*sigmax_multi(spin_num,j);
                     if j<spin_num
-                        if mod(j,1) == 1
+                        if mod(j,2) == 1
                             U_diff_b((2*spin_num-1)*(i-1)+spin_num+j,:,:) = -0.5*1j*reshape(URs(3*i-1,:,:),2^spin_num,2^spin_num)*sigmaz_sigmaz_multi(spin_num,j)*reshape(ULs(3*i-2,:,:),2^spin_num,2^spin_num);
                         else
                              U_diff_b((2*spin_num-1)*(i-1)+spin_num+j,:,:) = -0.5*1j*reshape(URs(3*i,:,:),2^spin_num,2^spin_num)*sigmaz_sigmaz_multi(spin_num,j)*reshape(ULs(3*i-1,:,:),2^spin_num,2^spin_num);
@@ -459,7 +459,7 @@ function [U, U_diff_b] = generate_Trotter_ansatz_XYZ(spin_num, layer, bvalue)
                     U_diff_b((4*spin_num-3)*(i-1)+j,:,:) = -0.5*1j*reshape(URs(7*i-6,:,:),2^spin_num,2^spin_num)*sigmax_multi(spin_num,j)*reshape(ULs(7*i-7,:,:),2^spin_num,2^spin_num);   
                 end
                 if j<spin_num
-                    if mod(j,1) == 1
+                    if mod(j,2) == 1
                          U_diff_b((4*spin_num-3)*(i-1)+spin_num+j,:,:) = -0.5*1j*reshape(URs(7*i-5,:,:),2^spin_num,2^spin_num)*sigmaz_sigmaz_multi(spin_num,j)*reshape(ULs(7*i-6,:,:),2^spin_num,2^spin_num);
                          U_diff_b((4*spin_num-3)*(i-1)+2*spin_num-1+j,:,:) = -0.5*1j*reshape(URs(7*i-3,:,:),2^spin_num,2^spin_num)*sigmay_sigmay_multi(spin_num,j)*reshape(ULs(7*i-4,:,:),2^spin_num,2^spin_num);
                          U_diff_b((4*spin_num-3)*(i-1)+3*spin_num-2+j,:,:) = -0.5*1j*reshape(URs(7*i-1,:,:),2^spin_num,2^spin_num)*sigmax_sigmax_multi(spin_num,j)*reshape(ULs(7*i-2,:,:),2^spin_num,2^spin_num);
